@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"strings"
-	"taraskrasiuk/go_jokes_tcp_server/joke"
+	jokes "taraskrasiuk/go_jokes_tcp_server/jokes"
 )
 
 // Default:
@@ -21,11 +20,8 @@ func NewConfig() *config {
 
 	var host, port string = "localhost", "8080"
 
-	fmt.Println(args)
 	for _, arg := range args {
 		argSpl := strings.Split(arg, "=")
-
-		fmt.Println(argSpl)
 
 		if argSpl[0] == "--host" {
 			host = argSpl[1]
@@ -42,5 +38,8 @@ func NewConfig() *config {
 func main() {
 	cfg := NewConfig()
 
-	joke.RunTCPServer(cfg.host, cfg.port)
+	jokesStore := jokes.NewJokesStore()
+	serverOpts := jokes.NewTCPServerOpts(jokesStore, cfg.host, cfg.port)
+
+	jokes.RunTCPServer(*serverOpts)
 }
