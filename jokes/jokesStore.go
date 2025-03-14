@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"golang.org/x/exp/rand"
@@ -23,6 +24,12 @@ func NewJokesStore() *JokesStore {
 		os.Exit(1)
 	}
 
+	// TODO: find a better solution to dealt with a file path, due to testing running env.
+	if strings.Contains(wd, "/jokes") {
+		wd = strings.Replace(wd, "/jokes", "", 1)
+	}
+
+	fmt.Println(wd)
 	file, err := os.OpenFile(fmt.Sprintf("%s/jokes/jokes.json", wd), os.O_RDONLY, 04) // only read
 	if err != nil {
 		log.Fatal(err)
