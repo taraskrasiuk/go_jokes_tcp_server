@@ -9,6 +9,6 @@ func TestJokesStore(t *testing.T) {
 	randJoke := jokesStore.GetRandomJokeParts()
 
 	if len(randJoke) != 2 {
-		t.Errorf("the random joke should being built with 2 parts of array strings")
+		t.Errorf("the random joke should contain the 2 strings.")
 	}
 }
