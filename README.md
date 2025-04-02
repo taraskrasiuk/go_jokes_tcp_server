@@ -11,4 +11,4 @@ With "Makefile":
 Go build:
 - Run the command ``go build ./cmd/jokes`` and the run the binary.
 
-Open a new terminal window, and run the command using a ``ns``: ``ns localhost 8080``. After 2 secods, you going receive the jokes within interval.
+Open a new terminal window, and run the command using a ``nc``: ``nc localhost 8080``. After 2 secods, you going receive the jokes within interval.
